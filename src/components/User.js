@@ -2,7 +2,9 @@ import React from 'react'
 
 const User = ({name}) => {
     return (
-        <p>{name}</p>
+        <>
+        <input type="radio" /><label>{name}</label><br/>
+        </>
     )
 }
 
