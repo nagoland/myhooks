@@ -1,5 +1,6 @@
 import React,{useState, useContext} from "react"
 import FormsContext from "../../contexts/FormsContext"
+import styled from "styled-components"
 
 const MessageForm = () => {
     const { message, setMessage, sender, dispatch} = useContext(FormsContext)
@@ -9,7 +10,7 @@ const MessageForm = () => {
     }
     const sendMessage = (e) => {
         e.preventDefault()
-        if(message !== ""){
+        if(message !== "" && sender !==""){
             dispatch(
                 {
                     type: "SEND_MESSAGE",
@@ -17,16 +18,31 @@ const MessageForm = () => {
                     sender
                 }
             )
+            setMessage("")
         }
-        setMessage("")
     }
     return(
-        <form className="send-message">
-            <span>{sender} : </span>
-            <input onChange={checkMessage}></input>
-            <button onClick={sendMessage}>送信</button>
-        </form>
+        <>
+        <Wrap>
+            <form className="send-message">
+                <input onChange={checkMessage} className="message-form" value={message}></input>
+                <button onClick={sendMessage} className="btn">送信</button>
+            </form>
+        </Wrap>
+        </>
     )
 }
+
+const Wrap = styled.div `
+    .message-form{
+    width: 500px;
+    height: 40px;
+    border-radius: 10px;
+    }
+    .btn{
+        height:40px;
+        width: 50px;
+    }
+`
 
 export default MessageForm

@@ -15,8 +15,9 @@ const App = () => {
     return (
         <FormsContext.Provider value={{state,dispatch,message,setMessage,names,
             setNames,sender,setSender,inputNames,setInputNames}}>
+
             <ViewChat />
-        <Forms />
+            <Forms />
         </FormsContext.Provider>
         
     )
