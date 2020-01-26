@@ -4,18 +4,22 @@
 //     message: "こんにちは"
 // }
 
+// state = [{roomsName:"room1", in:[{sender: "wataryu", message: "hello", time: "12:12"}]},
+//         {roomsName: "romm2", in:[{sender: "nagoya", message: "goodnight", time: "13:13"}]}
+//         ]
+
+
 const events = (state=[], action) => {
 
     switch(action.type){
-        case "SELECT_SENDER":
-            const sender = {sender: action.sender}
-
-            return [...state,sender]
-
-
+        case "ADD_ROOM":
+            const roomEvent = {roomsName: action.roomsName}
+            return [...state,{roomEvent, in:[...event]}]
+            
         case "SEND_MESSAGE":
             const event = {sender: action.sender,
-                            message: action.message}
+                            message: action.message,
+                            time: action.time}
             const length = state.length
 
             const id = length === 0 ? 1 : state[length-1].id + 1
@@ -27,7 +31,13 @@ const events = (state=[], action) => {
             // }
             return [...state, {id:id, ...event}]
         case "DELETE_MESSAGE":
-            return state
+            console.log(action.message)
+            console.log(state[action.id-1].message)
+            state[action.id-1].message = action.message
+            state[action.id-1].time = action.time
+            console.log(state[action.id-1].message)
+
+            return [...state]
         case "DELETE_ALL_MESSAGE":
             return []
         default:

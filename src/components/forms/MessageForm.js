@@ -10,12 +10,15 @@ const MessageForm = () => {
     }
     const sendMessage = (e) => {
         e.preventDefault()
+        const time = new Date()
+        const thisTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()
         if(message !== "" && sender !==""){
             dispatch(
                 {
                     type: "SEND_MESSAGE",
                     message,
-                    sender
+                    sender,
+                    time: thisTime
                 }
             )
             setMessage("")
