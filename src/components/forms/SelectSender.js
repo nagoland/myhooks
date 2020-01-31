@@ -2,6 +2,8 @@ import React, { useContext } from "react"
 import FormsContext from "../../contexts/FormsContext"
 import User from "./User"
 import styled from "styled-components"
+import firebase from "firebase"
+import firestore from "../../config/fireStore"
 
 
 const SelectSender = () => {

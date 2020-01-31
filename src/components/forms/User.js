@@ -10,9 +10,6 @@ const User = ({name}) => {
     
 
 
-
-
-
     return (
         <> 
             <input type="radio" name="checkedName" id={name} onFocus={selectSender} />

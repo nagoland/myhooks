@@ -1,5 +1,6 @@
 import React,{useContext} from "react"
 import FormsContext from "../../contexts/FormsContext"
+import firestore from "../../config/fireStore"
 
 
 const AddNameForm = () => {

@@ -1,9 +1,12 @@
 import React,{useState, useContext} from "react"
 import FormsContext from "../../contexts/FormsContext"
 import styled from "styled-components"
+import firestore from "../../config/fireStore"
+
+
 
 const MessageForm = () => {
-    const { message, setMessage, sender, dispatch} = useContext(FormsContext)
+    const { message, setMessage,messages, setMessages, sender, dispatch} = useContext(FormsContext)
     const checkMessage = (e) => {
         e.preventDefault()
         setMessage(e.target.value)
@@ -19,9 +22,15 @@ const MessageForm = () => {
                     message,
                     sender,
                     time: thisTime
-                }
+            }
             )
+            firestore.collection("messages").add({
+                user: sender,
+                content: message,
+                date: time
+            })
             setMessage("")
+
         }
     }
     return(
